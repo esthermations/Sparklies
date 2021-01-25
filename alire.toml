@@ -1,0 +1,9 @@
+name = "sparklies"
+description = "A prospective game in SPARK!"
+version = "0.0.0"
+
+authors = ["Esther O'Keefe"]
+maintainers = ["Esther O'Keefe <esthermations@gmail.com>"]
+maintainers-logins = ["esthermations"]
+
+executables = ["sparklies-main"]
