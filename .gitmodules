@@ -1,0 +1,3 @@
+[submodule "dep/OpenGLAda"]
+	path = dep/OpenGLAda
+	url = https://github.com/flyx/OpenGLAda

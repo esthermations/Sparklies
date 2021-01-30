@@ -1,7 +1,12 @@
 with Ada.Text_IO;   use Ada.Text_IO;
 with Ada.Real_Time; use Ada.Real_Time;
 
+with GL;       use GL;
+with GL.Types; use GL.Types;
+
 with Sparklies.Units; use Sparklies.Units;
+with Sparklies.Renderer; use Sparklies.Renderer;
+with Sparklies.Renderer.Obj;
 
 procedure Sparklies.Main is
 
@@ -18,7 +23,10 @@ procedure Sparklies.Main is
 
    Initial  : constant Ada.Real_Time.Time := Clock;
    Previous :          Ada.Real_Time.Time := Initial;
-   Final    : constant Ada.Real_Time.Time := Initial + Seconds (5);
+   Final    : constant Ada.Real_Time.Time := Initial + Seconds (1);
+
+   Vertex_Count : GL.Types.Size;
+
 begin
    loop
       exit when Previous > Final;
@@ -32,4 +40,20 @@ begin
 
       delay 0.001;
    end loop;
+
+   Obj.Count_Vertices (Count         => Vertex_Count,
+                       Obj_File_Path => "./models/newell_teaset/teapot.obj");
+
+   Put_Line ("Vertex_Count = " & Vertex_Count'Img);
+
+   declare
+      Model : Renderer.Model_Data (Vertex_Count);
+   begin
+      Obj.Parse (Ret           => Model,
+                 Vertex_Count  => Vertex_Count,
+                 Obj_File_Path => "./models/newell_teaset/teapot.obj");
+      Put_Line ("First vertex is: " & Single'Image (Model.Positions (0) (X)));
+      Put_Line ("First normal is: " & Single'Image (Model.Normals   (0) (X)));
+   end;
+
 end Sparklies.Main;

@@ -1,3 +1,6 @@
+with "GNATCOLL";
+with "./dep/OpenGLAda/opengl";
+
 project Sparklies is
 
    for Source_Dirs use ("src");
@@ -63,7 +66,7 @@ project Sparklies is
    end case;
 
    package Builder is
-      for Global_Configuration_Pragmas use "spark.adc";
+      --  for Global_Configuration_Pragmas use "spark.adc";
    end Builder;
 
    package Compiler is
